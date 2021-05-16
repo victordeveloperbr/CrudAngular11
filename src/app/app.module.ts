@@ -8,6 +8,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { AddTutorialComponent } from './components/add-tutorial/add-tutorial.component';
 import { TutorialDetailsComponent } from './components/tutorial-details/tutorial-details.component';
 import { TutorialsListComponent } from './components/tutorials-list/tutorials-list.component';
+import { AlertModule } from './components/alert/alert.module';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { TutorialsListComponent } from './components/tutorials-list/tutorials-li
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    AlertModule
   ],
   providers: [],
   bootstrap: [AppComponent]

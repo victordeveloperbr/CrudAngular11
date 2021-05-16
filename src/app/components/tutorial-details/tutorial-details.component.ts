@@ -2,6 +2,7 @@ import { TutorialService } from './../../services/tutorial.service';
 import { Tutorial } from './../../models/tutorial.model';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { AlertService } from '../alert/alert.service';
 
 @Component({
   selector: 'app-tutorial-details',
@@ -20,13 +21,14 @@ export class TutorialDetailsComponent implements OnInit {
 
   constructor(
     private tutorialService: TutorialService,
+    private alertService: AlertService,
     private route: ActivatedRoute,
     private router: Router
     ) { }
 
   ngOnInit(): void {
     this.mensagem = '';
-    // this.obterTutorial(this.route.snapshot.params.id);
+    this.obterTutorial(this.route.snapshot.params.id);
   }
 
   obterTutorial(id: string): void {
@@ -53,7 +55,7 @@ export class TutorialDetailsComponent implements OnInit {
         res => {
           this.currentTutorial.published = status;
           console.log(res);
-          this.mensagem = res.message;
+          this.alertService.success(`Foi atualizado com status: ${status ? 'Publicado' : 'Não Publicado'}`, true);
         },
         error => {
           console.log(error);
@@ -65,10 +67,11 @@ export class TutorialDetailsComponent implements OnInit {
       .subscribe(
         res => {
           console.log(res);
-          this.mensagem = res.message;
+          this.alertService.success('Atualizado com Sucesso', true);
         },
         error => {
           console.log(error);
+          this.alertService.danger(error, true);
         });
   }
 
@@ -77,10 +80,12 @@ export class TutorialDetailsComponent implements OnInit {
       .subscribe(
         res => {
           console.log(res);
+          this.alertService.success('Deletado com Sucesso', true);
           this.router.navigate(['/tutorials']);
         },
         error => {
           console.log(error);
+          this.alertService.danger('Não foi possível realizar a exclusão', true);
         });
   }
 }

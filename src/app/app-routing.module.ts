@@ -5,9 +5,9 @@ import { RouterModule, Routes } from '@angular/router';
 import { AddTutorialComponent } from './components/add-tutorial/add-tutorial.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'tutorial', pathMatch: 'full' },
+  { path: '', redirectTo: 'tutorials', pathMatch: 'full' },
   { path: 'tutorials', component: TutorialsListComponent },
-  { path: 'tutorial/:id', component: TutorialDetailsComponent },
+  { path: 'tutorials/:id', component: TutorialDetailsComponent },
   { path: 'add', component: AddTutorialComponent }
 ];
 

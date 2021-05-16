@@ -1,6 +1,7 @@
 import { TutorialService } from './../../services/tutorial.service';
 import { Component, OnInit } from '@angular/core';
 import { Tutorial } from 'src/app/models/tutorial.model';
+import { AlertService } from '../alert/alert.service';
 
 @Component({
   selector: 'app-add-tutorial',
@@ -17,7 +18,10 @@ export class AddTutorialComponent implements OnInit {
 
   enviado = false;
 
-  constructor(private tutorialService: TutorialService) { }
+  constructor(
+    private tutorialService: TutorialService,
+    private alertService: AlertService
+  ) { }
 
   ngOnInit(): void {
   }
@@ -33,9 +37,11 @@ export class AddTutorialComponent implements OnInit {
       res => {
         console.log(res);
         this.enviado = true;
+        this.alertService.success('Adicionado com Sucesso', true);
       },
       error => {
         console.log(error);
+        this.alertService.danger(error, true);
       });
   }
 
