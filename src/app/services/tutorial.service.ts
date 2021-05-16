@@ -24,12 +24,12 @@ export class TutorialService {
   }
 
   // posta um tutorial
-  create(data: any): Observable<Tutorial> {
+  create(data: any): Observable<any> {
     return this.http.post(baseUrl, data);
   }
 
   // atualiza um tutorial
-  update(id: any, data: any): Observable<Tutorial> {
+  update(id: any, data: any): Observable<any> {
     return this.http.put(`${baseUrl}/${id}`, data);
   }
 

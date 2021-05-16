@@ -31,4 +31,42 @@ export class TutorialsListComponent implements OnInit {
         console.log(error);
       });
   }
+
+  // recarregar lista
+  atualizarLista(): void {
+    this.carregarTutoriais();
+    this.currentTutorial = undefined;
+    this.currentIndex = -1;
+  }
+
+  // atribuir tutorial ativo
+  atribuirTutorialAtivo(tutorial: Tutorial, index: number): void {
+    this.currentTutorial = tutorial;
+    this.currentIndex = index;
+  }
+
+  removerTodosTutoriais(): void {
+    this.tutorialService.deleteAll()
+    .subscribe(
+      res => {
+        console.log(res);
+        this.atualizarLista();
+      },
+      error => {
+        console.log(error);
+      });
+  }
+
+  procurarPorTitulo(): void {
+    this.tutorialService.findByTitle(this.title)
+    .subscribe(
+      data => {
+        this.tutorials = data;
+        console.log(data);
+      },
+      error => {
+        console.log(error);
+      });
+  }
+
 }

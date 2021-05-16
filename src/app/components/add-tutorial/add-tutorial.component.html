@@ -1,1 +1,32 @@
-<p>add-tutorial works!</p>
+<div>
+  <div class="submit-form">
+    <div *ngIf="!enviado">
+      <div class="form-group">
+        <label for="title">Titulo</label>
+        <input
+        type="text"
+        class="form-control"
+        id="title"
+        required
+        [(ngModel)]="tutorial.title" />
+      </div>
+
+      <div class="form-group">
+        <label for="description">Descrição</label>
+        <input
+        class="form-control"
+        id="description"
+        required
+        [(ngModel)]="tutorial.description"
+        />
+      </div>
+
+      <button (click)="salvarTutorial()" class="btn btn-success">Enviar</button>
+    </div>
+
+    <div *ngIf="enviado">
+      <h4>Tutorial foi enviado com sucesso!</h4>
+      <button (click)="novoTutorial()" class="btn btn-success">Novo</button>
+    </div>
+  </div>
+</div>
